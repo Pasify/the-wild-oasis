@@ -69,7 +69,7 @@ function CabinRow({ cabin }) {
   });
   function handleDelete() {
     console.log(`cabin ${cabinId} was clicked`);
-    mutate(cabinId);
+    // mutate(cabinId);
   }
   return (
     <TableRow role="row">
