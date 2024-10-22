@@ -39,7 +39,7 @@ const FormRow2 = styled.div`
   }
 `;
 
-function CreateCabinForm({ cabinToEdit = {} }) {
+function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { id: editId, ...editValues } = cabinToEdit;
   const { isCreating, createCabin } = useCreateCabin();
   const { isEditing, editCabin } = useEditCabin();
@@ -83,6 +83,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         {
           onSuccess: () => {
             reset();
+            onCloseModal?.();
           },
         }
       );
@@ -96,7 +97,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
     we pass this two function  as call backs into the handleSubmit function, the submitForm function for  a successful submitting and the onError function incase of any errors ot failed validation , so we get access to the error message 
   */
   return (
-    <Form onSubmit={handleSubmit(submitForm, onError)}>
+    <Form
+      onSubmit={handleSubmit(submitForm, onError)}
+      type={onCloseModal ? "modal" : "regular"}
+    >
       <FormRow label="Cabin name" error={errors?.name?.message}>
         <Input
           disabled={isWorking}
@@ -191,7 +195,11 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
       <FormRow2>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button
+          variation="secondary"
+          type="reset"
+          onClick={() => onCloseModal?.()}
+        >
           Cancel
         </Button>
         <Button disabled={isWorking}>
