@@ -84,7 +84,7 @@ function CabinRow({ cabin }) {
       {discount ? (
         <Discount>{formatCurrency(discount)}</Discount>
       ) : (
-        <span>&mdash</span>
+        <span>-</span>
       )}
       <div>
         <Modal>
@@ -104,7 +104,6 @@ function CabinRow({ cabin }) {
               </Modal.Open>
             </Menus.List>
           </Menus.Menu>
-
           <Modal.Window name="edit">
             <CreateCabinForm cabinToEdit={cabin} />
           </Modal.Window>
