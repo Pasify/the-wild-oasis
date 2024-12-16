@@ -10,7 +10,6 @@ function BookingTable() {
   let { bookings, isLoading } = useBookings();
   bookings = bookings || [];
 
-  console.log(bookings);
   if (!bookings.length) return <Empty resourceName="bookings" />;
   if (isLoading) return <Spinner />;
   return (
